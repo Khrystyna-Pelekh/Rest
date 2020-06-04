@@ -15,7 +15,8 @@ namespace Lab3.Context
         public DbSet<MachineConfig> MachineConfigs { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
-        public DbSet<PortionOfIngredient> PortionOfIngredients { get; set; }
+        public DbSet<DrinkIngredient> DrinkIngredients { get; set; }
+        public DbSet<AdditionalIngredient> AdditionalIngredients { get; set; }
         public DbSet<User> Users { get; set; }
     }
 }

@@ -19,6 +19,34 @@ namespace Lab3.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Lab3.Entities.AdditionalIngredient", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IngredientId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("OrderItemId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IngredientId");
+
+                    b.HasIndex("OrderItemId");
+
+                    b.ToTable("AdditionalIngredients");
+                });
+
             modelBuilder.Entity("Lab3.Entities.CoffeeMachine", b =>
                 {
                     b.Property<int>("Id")
@@ -47,6 +75,34 @@ namespace Lab3.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Drinks");
+                });
+
+            modelBuilder.Entity("Lab3.Entities.DrinkIngredient", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CountOfUnit")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DrinkId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IngredientId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DrinkId");
+
+                    b.HasIndex("IngredientId");
+
+                    b.ToTable("DrinkIngredients");
                 });
 
             modelBuilder.Entity("Lab3.Entities.Ingredient", b =>
@@ -135,39 +191,6 @@ namespace Lab3.Migrations
                     b.ToTable("OrderItems");
                 });
 
-            modelBuilder.Entity("Lab3.Entities.PortionOfIngredient", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CountOfUnit")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("DrinkId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IngredientId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("OrderItemId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DrinkId");
-
-                    b.HasIndex("IngredientId");
-
-                    b.HasIndex("OrderItemId");
-
-                    b.ToTable("PortionOfIngredients");
-                });
-
             modelBuilder.Entity("Lab3.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -187,6 +210,28 @@ namespace Lab3.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Lab3.Entities.AdditionalIngredient", b =>
+                {
+                    b.HasOne("Lab3.Entities.Ingredient", "Ingredient")
+                        .WithMany()
+                        .HasForeignKey("IngredientId");
+
+                    b.HasOne("Lab3.Entities.OrderItem", null)
+                        .WithMany("AdditionalIngredients")
+                        .HasForeignKey("OrderItemId");
+                });
+
+            modelBuilder.Entity("Lab3.Entities.DrinkIngredient", b =>
+                {
+                    b.HasOne("Lab3.Entities.Drink", null)
+                        .WithMany("DrinkIngredients")
+                        .HasForeignKey("DrinkId");
+
+                    b.HasOne("Lab3.Entities.Ingredient", "Ingredient")
+                        .WithMany()
+                        .HasForeignKey("IngredientId");
                 });
 
             modelBuilder.Entity("Lab3.Entities.MachineConfig", b =>
@@ -209,21 +254,6 @@ namespace Lab3.Migrations
                     b.HasOne("Lab3.Entities.Order", null)
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId");
-                });
-
-            modelBuilder.Entity("Lab3.Entities.PortionOfIngredient", b =>
-                {
-                    b.HasOne("Lab3.Entities.Drink", null)
-                        .WithMany("PortionOfIngredients")
-                        .HasForeignKey("DrinkId");
-
-                    b.HasOne("Lab3.Entities.Ingredient", "Ingredient")
-                        .WithMany()
-                        .HasForeignKey("IngredientId");
-
-                    b.HasOne("Lab3.Entities.OrderItem", null)
-                        .WithMany("AdditionalIngredients")
-                        .HasForeignKey("OrderItemId");
                 });
 #pragma warning restore 612, 618
         }

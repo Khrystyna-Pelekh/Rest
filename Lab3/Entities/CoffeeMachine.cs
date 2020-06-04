@@ -9,6 +9,5 @@ namespace Lab3.Entities
     {
         public int Id { get; set; }
         public List<MachineConfig> Configs { get; set; }
-        
     }
 }

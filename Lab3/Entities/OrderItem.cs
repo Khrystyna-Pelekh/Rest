@@ -9,7 +9,7 @@ namespace Lab3.Entities
     {
         public int Id { get; set; }
         public Drink Drink { get; set; }
-        public List<PortionOfIngredient> PortionOfIngredients { get; set; }
+        public List<AdditionalIngredient> AdditionalIngredients { get; set; }
         public double Price { get; set; }
     }
 }

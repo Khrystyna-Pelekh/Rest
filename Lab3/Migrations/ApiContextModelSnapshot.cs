@@ -54,6 +54,9 @@ namespace Lab3.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Brand")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("CoffeeMachine");
@@ -92,9 +95,6 @@ namespace Lab3.Migrations
 
                     b.Property<int?>("IngredientId")
                         .HasColumnType("int");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -161,7 +161,12 @@ namespace Lab3.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
                 });
@@ -243,6 +248,13 @@ namespace Lab3.Migrations
                     b.HasOne("Lab3.Entities.Ingredient", "Ingredient")
                         .WithMany()
                         .HasForeignKey("IngredientId");
+                });
+
+            modelBuilder.Entity("Lab3.Entities.Order", b =>
+                {
+                    b.HasOne("Lab3.Entities.User", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Lab3.Entities.OrderItem", b =>

@@ -5,6 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Lab3.Context;
 using Microsoft.EntityFrameworkCore;
+using System;
+using Lab3.Services;
+using Lab3.DataAccess;
+using Lab3.Services.Models;
 
 namespace Lab3_web
 {
@@ -18,19 +22,15 @@ namespace Lab3_web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApiContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:CoffeeMachineDB"]));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IService<Drink>, DrinkService>();
+            services.AddScoped<IService<Order>, OrderService>();
             services.AddMvc(o => o.EnableEndpointRouting = false);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
+            var context = serviceProvider.GetService<ApiContext>();
             app.UseMvc();
         }
     }

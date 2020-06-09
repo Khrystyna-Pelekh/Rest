@@ -1,10 +1,7 @@
-﻿using Lab3.Context;
-using Lab3.DataAccess;
+﻿using Lab3.DataAccess;
 using Lab3.Services.Extensions;
 using Lab3.Services.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +32,14 @@ namespace Lab3.Services
 
         public OrderDto Get(int id)
         {
-            throw new NotImplementedException();
+            return Repository.Get(o=>o.Id==id)
+                .Include("User")
+                .Include("OrderItems")
+                .Include("OrderItems.Drink")
+                .Include("OrderItems.Drink.DrinkIngredients")
+                .Include("OrderItems.Drink.DrinkIngredients.Ingredient")
+                .Include("OrderItems.AdditionalIngredients")
+                .Include("OrderItems.AdditionalIngredients.Ingredient").SingleOrDefault().ToDto();
         }
 
         public OrderDto Create(OrderDto orderDto)

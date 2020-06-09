@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using MachineConfigDto = Lab3.Services.Models.MachineConfig;
+﻿using MachineConfigDto = Lab3.Services.Models.MachineConfig;
 using MachineConfigEntity = Lab3.Entities.MachineConfig;
 
 namespace Lab3.Services.Extensions

@@ -1,6 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
-using System.Numerics;
 
 namespace Lab3.Services.Models
 {

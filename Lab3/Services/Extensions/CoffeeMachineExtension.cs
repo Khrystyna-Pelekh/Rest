@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using CoffeeMachineDto = Lab3.Services.Models.CoffeeMachine;
 using CoffeeMachineEntity = Lab3.Entities.CoffeeMachine;
 

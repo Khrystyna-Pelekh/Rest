@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using AdditionalIngredientDto = Lab3.Services.Models.AdditionalIngredient;
+﻿using AdditionalIngredientDto = Lab3.Services.Models.AdditionalIngredient;
 using AdditionalIngredientEntity = Lab3.Entities.AdditionalIngredient;
 
 namespace Lab3.Services.Extensions

@@ -24,10 +24,32 @@ namespace Lab3.Controllers
             return Ok(Service.Get());
         }
 
+        // GET api/<MachineConfigsController>/5
+        [HttpGet("{id}")]
+        public ActionResult<MachineConfig> Get(int id)
+        {
+            var response = Service.Get(id);
+            if (response != null)
+            {
+                return Ok(response);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
         [HttpPatch("{id}")]
         public ActionResult Patch(int id, [FromBody] PatchModel patch)
         {
-            Service.Update(id, patch);
+            try
+            {
+                Service.Update(id, patch);
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
             return Ok();
         }
     }

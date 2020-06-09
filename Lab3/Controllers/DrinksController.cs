@@ -25,27 +25,16 @@ namespace Lab3.Controllers
 
         // GET api/<DrinkController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public ActionResult<Drink> Get(int id)
         {
-            return "value";
-        }
-
-        // POST api/<DrinkController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<DrinkController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<DrinkController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            var response = Service.Get(id);
+            if (response != null) {
+                return Ok(response);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }

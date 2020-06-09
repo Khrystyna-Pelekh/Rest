@@ -11,7 +11,7 @@ namespace Lab3.Services.Extensions
             var dto = new OrderDto
             {
                 Id = entity.Id,
-                //User = entity.User.ToDto(),
+                User = entity.User.ToDto(),
                 Price = entity.Price,
                 OrderItems = entity.OrderItems.Select(oi => oi.ToDto()).ToList()
             };
@@ -23,7 +23,7 @@ namespace Lab3.Services.Extensions
             var entity = new OrderEntity
             {
                 Id = dto.Id,
-                //User = entity.User.ToEntity(),
+                User = dto.User.ToEntity(),
                 Price = dto.Price,
                 OrderItems = dto.OrderItems.Select(oi => oi.ToEntity()).ToList()
             };

@@ -11,10 +11,7 @@ namespace Lab3.Services.Extensions
             var dto = new UserDto
             {
                 Id = entity.Id,
-                UserName = entity.UserName,
-                Password = entity.Password,
-                Role= (Models.Role)entity.Role,
-                Orders = entity.Orders.Select(o => o.ToDto()).ToList()
+                UserName = entity.UserName
             };
             return dto;
         }
@@ -24,10 +21,7 @@ namespace Lab3.Services.Extensions
             var entity = new UserEntity
             {
                 Id = dto.Id,
-                UserName = dto.UserName,
-                Password = dto.Password,
-                Role = (Entities.Role)dto.Role,
-                Orders = dto.Orders.Select(o => o.ToEntity()).ToList()
+                UserName = dto.UserName
             };
             return entity;
         }

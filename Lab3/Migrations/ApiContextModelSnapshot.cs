@@ -35,9 +35,6 @@ namespace Lab3.Migrations
                     b.Property<int?>("OrderItemId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
                     b.HasKey("Id");
 
                     b.HasIndex("IngredientId");
@@ -184,9 +181,6 @@ namespace Lab3.Migrations
                     b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
                     b.HasKey("Id");
 
                     b.HasIndex("DrinkId");
@@ -253,7 +247,7 @@ namespace Lab3.Migrations
             modelBuilder.Entity("Lab3.Entities.Order", b =>
                 {
                     b.HasOne("Lab3.Entities.User", "User")
-                        .WithMany("Orders")
+                        .WithMany()
                         .HasForeignKey("UserId");
                 });
 

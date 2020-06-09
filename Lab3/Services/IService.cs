@@ -1,7 +1,5 @@
-﻿using System;
+﻿using Lab3.Services.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Lab3.Services
 {
@@ -14,7 +12,7 @@ namespace Lab3.Services
 
         TDto Create(TDto defect);
 
-        void Update(int id, TDto defect);
+        void Update(int id, PatchModel defect);
 
         void Delete(int id);
 

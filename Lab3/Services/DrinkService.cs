@@ -5,6 +5,7 @@ using DrinkDto = Lab3.Services.Models.Drink;
 using DrinkEntity = Lab3.Entities.Drink;
 using Lab3.Services.Extensions;
 using Microsoft.EntityFrameworkCore;
+using Lab3.Services.Models;
 
 namespace Lab3.Services
 {
@@ -25,18 +26,17 @@ namespace Lab3.Services
 
         public DrinkDto Get(int id)
         {
-            return Repository.Get(u => u.Id == id).SingleOrDefault()?.ToDto();
+            return Repository.Get(u => u.Id == id)
+                .Include("DrinkIngredients")
+                .Include("DrinkIngredients.Ingredient").SingleOrDefault()?.ToDto();
         }
 
         public DrinkDto Create(DrinkDto drinkDto)
         {
-            var entity = drinkDto.ToEntity();
-            Repository.Add(entity);
-            UnitOfWork.SaveChanges();
-            return Get(drinkDto.Id);
+            throw new System.NotImplementedException();
         }
 
-        public void Update(int id, DrinkDto drink)
+        public void Update(int id, PatchModel drink)
         {
             throw new System.NotImplementedException();
         }

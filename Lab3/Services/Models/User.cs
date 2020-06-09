@@ -12,11 +12,5 @@ namespace Lab3.Services.Models
         public int Id { get; set; }
         [JsonProperty("userName")]
         public string UserName { get; set; }
-        [JsonProperty("password")]
-        public string Password { get; set; }
-        [JsonProperty("role")]
-        public Role Role { get; set; }
-        [JsonProperty("orders")]
-        public List<Order> Orders { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using Lab3.Entities;
+using System.Collections.Generic;
+using System.Linq;
 using DrinkDto = Lab3.Services.Models.Drink;
 using DrinkEntity = Lab3.Entities.Drink;
 
@@ -25,7 +27,7 @@ namespace Lab3.Services.Extensions
                 Id = dto.Id,
                 Name = dto.Name,
                 Price = dto.Price,
-                DrinkIngredients = dto.DrinkIngredients.Select(di => di.ToEntity()).ToList()
+                DrinkIngredients = dto.DrinkIngredients!=null? dto.DrinkIngredients.Select(di => di.ToEntity()).ToList() : new List<DrinkIngredient>()
             };
             return entity;
         }

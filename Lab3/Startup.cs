@@ -24,7 +24,9 @@ namespace Lab3_web
             services.AddDbContext<ApiContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:CoffeeMachineDB"]));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IService<Drink>, DrinkService>();
+            services.AddScoped<IService<Ingredient>, IngredientService>();
             services.AddScoped<IService<Order>, OrderService>();
+            services.AddScoped<IService<MachineConfig>, MachineConfigService>();
             services.AddMvc(o => o.EnableEndpointRouting = false);
         }
 

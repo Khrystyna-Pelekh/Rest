@@ -11,10 +11,8 @@ namespace Lab3.Services.Models
     {
         [JsonProperty("id")]
         public int Id { get; set; }
-        //[Required]
-        //[JsonProperty("user")]
-        //public User User { get; set; }
-        [Required]
+        [JsonProperty("user")]
+        public User User { get; set; }
         [JsonProperty("orderItems")]
         public List<OrderItem> OrderItems { get; set; }
         [JsonProperty("price")]

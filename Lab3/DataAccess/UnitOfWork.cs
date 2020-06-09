@@ -7,7 +7,7 @@ namespace Lab3.DataAccess
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DbContext _context;
+        private readonly ApiContext _context;
         private Dictionary<Type, object> _repositories;
         private bool _disposed;
 
